@@ -9,6 +9,10 @@ public class Cart {
 	public int getQuantity() {
 		return quantity;
 	}
+	@Override
+	public String toString() {
+		return "Cart [quantity=" + quantity + ", products=" + products + ", totalPrice=" + totalPrice + "]";
+	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}

@@ -24,4 +24,8 @@ public class Order {
 		this.status = status;
 	}
 	String status;
+	@Override
+	public String toString() {
+		return "Order [products=" + products + ", id=" + id + ", status=" + status + "]";
+	}
 }
