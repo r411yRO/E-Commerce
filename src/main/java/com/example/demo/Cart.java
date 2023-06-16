@@ -1,11 +1,15 @@
 package com.example.demo;
 
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Cart {
-	int quantity;
-	List<Product> products;
-	int totalPrice;
+	private int quantity;
+	private Map<Product,Integer> products=new HashMap<Product,Integer>();
+	private int totalPrice;
+	public Cart(Map<Product,Integer> products) {
+		this.products=products;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
@@ -17,9 +21,15 @@ public class Cart {
 		this.quantity = quantity;
 	}
 	public int getTotalPrice() {
+		int totalPrice=0;
+		for(Product product:products.keySet())
+			totalPrice+=product.getTotalPrice(products.get(product));
 		return totalPrice;
 	}
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
+	public void addToCart(Product product,int amount) {
+		products.put(product, amount);
+	}
+	public void removeFromCart(Product product,int amount) {
+		products.remove(product);
 	}
 }

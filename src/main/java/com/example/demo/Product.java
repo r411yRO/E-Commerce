@@ -1,11 +1,27 @@
 package com.example.demo;
 
 public class Product {
-	String name;
-	String description;
-	int id;
-	double price;
-	int stock;
+	private String name;
+	private String description;
+	private int id;
+	private double price;
+	private int stock;
+	private static int lastId=0;
+	public Product() {}
+	public Product(String name,double price,int stock) {
+		this.name=name;
+		this.price=price;
+		this.stock=stock;
+		this.description="Placeholder";
+		this.id=generateId();
+	}
+	public Product(String name,String description,double price,int stock) {
+		this.name=name;
+		this.description=description;
+		this.price=price;
+		this.stock=stock;
+		this.id=generateId();
+	}
 	public String getName() {
 		return name;
 	}
@@ -21,8 +37,8 @@ public class Product {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	private int generateId() {
+		return ++lastId;
 	}
 	public double getPrice() {
 		return price;
@@ -40,6 +56,20 @@ public class Product {
 	public String toString() {
 		return "Product [name=" + name + ", description=" + description + ", id=" + id + ", price=" + price + ", stock="
 				+ stock + "]";
+	}
+	public double getTotalPrice(int quantity) {
+		return this.price*quantity;
+	}
+	public void addToStock(int quantity) {
+		this.stock+=quantity;
+	}
+	public void removeFromStock(int quantity) {
+		this.stock-=quantity;
+	}
+	public boolean isInStock() {
+		if(this.stock>0)
+			return true;
+		return false;
 	}
 	
 }

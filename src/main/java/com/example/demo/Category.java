@@ -1,8 +1,13 @@
 package com.example.demo;
 
 public class Category {
+	private static int lastId=0;
 	String name;
 	int id;
+	public Category(String name) {
+		this.name=name;
+		this.id=generateId();
+	}
 	public String getName() {
 		return name;
 	}
@@ -18,5 +23,8 @@ public class Category {
 	@Override
 	public String toString() {
 		return "Category [name=" + name + ", id=" + id + "]";
+	}
+	private int generateId() {
+		return ++lastId;
 	}
 }
