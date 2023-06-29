@@ -9,12 +9,22 @@ public class User {
 	private String email;
 	private static int lastId=0;
 	private int id;
+	private double balance;
 	User(String name,String password,String email)
 	{
 		this.name=name;
 		this.password=password;
 		this.email=email;
 		this.id=generateId();
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void addBalance(double amount) {
+		this.balance+=amount;
+	}
+	public void removeBalance(double amount) {
+		this.balance-=amount;
 	}
 	public String getName() {
 		return name;

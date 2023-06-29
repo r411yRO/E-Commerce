@@ -49,8 +49,8 @@ public class Product {
 	public int getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void increaseStock(int value) {
+		this.stock += value;
 	}
 	@Override
 	public String toString() {

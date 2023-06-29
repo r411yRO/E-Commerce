@@ -26,10 +26,33 @@ public class Cart {
 			totalPrice+=product.getTotalPrice(products.get(product));
 		return totalPrice;
 	}
-	public void addToCart(Product product,int amount) {
-		products.put(product, amount);
+	public void addToCart(Product new_product,int amount) {
+		for(Product product:products.keySet()) {
+			if(new_product==product)
+				products.put(product,products.get(product)+amount);
+			return;
+		}
+		products.put(new_product, amount);
 	}
-	public void removeFromCart(Product product,int amount) {
-		products.remove(product);
+	public void removeFromCart(Product new_product,int amount) {
+		for(Product product:products.keySet())
+			if(new_product==product) {
+				products.put(product,products.get(product)-amount);
+				return;
+			}
+	}
+	public boolean isEmpty() {
+		if(products.size()==0)
+			return true;
+		return false;
+	}
+	public void clearCart() {
+		products.clear();
+	}
+	public String listProducts() {
+		String productsList=new String();
+		for(Product product:products.keySet()) 
+			productsList=productsList+product.getName()+",";
+		return productsList;
 	}
 }
