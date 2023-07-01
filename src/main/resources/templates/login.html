@@ -8,9 +8,14 @@
 	<form action="#" th:action="@{/login}" th:object="${user}"
 		method="post">
 		<fieldset>
-			<input type="submit" id="submitButton" th:value="Save"> <input>
-			<input placeholder="Enter email" required type="text" th:field="*{email}"/>
-			<input placeholder="Enter password" required type="password" th:field="*{password}"/>
+			<input type="submit" id="submitButton" th:value="Save"> 
+			<input placeholder="Enter email" required type="text" th:field="*{email}" /> 
+			<input placeholder="Enter password" required type="password" th:field="*{password}" />
 		</fieldset>
 	</form>
+	
+	<div th:if="${errorMessage}" class="error-message">
+		<p th:text="${errorMessage}"></p>
+	</div>
+	
 </body>

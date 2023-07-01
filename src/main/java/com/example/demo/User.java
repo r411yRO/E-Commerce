@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 public class User {
 	@Column(name = "name", unique = true)
 	private String name;
-	@Column(name = "password", unique = true)
+	@Column(name = "password", unique = false)
 	private String password;
 	@Column(name = "email", unique = true)
 	private String email;
