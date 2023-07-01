@@ -41,19 +41,7 @@ public class ApplicationController {
 		//model.addAttribute("users",userRepository.findAll());
 		return "/login";
 	}
-	/*
-	@PostMapping("/register")
-	public String register(@ModelAttribute User user,Model model,
-			@RequestParam("confirm_password") String cPass) {
-		if(!user.isUsersPassword(cPass)) {
-			model.addAttribute("errorMessage","Passwords do not match");
-			return "register";
-		}
-		userRepository.save(user);
-		//model.addAttribute("users",userRepository.findAll());
-		return "/login";
-	}
-	*/
+
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("user",new User());
