@@ -23,7 +23,7 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private double balance;
 	@Temporal(TemporalType.DATE)

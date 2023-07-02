@@ -1,24 +1,36 @@
 package com.example.demo;
 import java.util.*;
+import jakarta.persistence.*;
+@Entity
 public class Review {
-	private static int lastId=0;
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	long id;
 	private int rating;
+	@ManyToOne
+    @JoinColumn(name = "product_id")
 	private Product evaluatedProduct;
 	private String comment;
 	public Review() {}
 	public Review(Product product,int rating) {
 		this.rating=rating;
 		this.evaluatedProduct=product;
-		this.id=generateId();
 	}
 	public Review(Product product,int rating,String comment) {
 		this.rating=rating;
 		this.evaluatedProduct=product;
 		this.comment=comment;
-		this.id=generateId();
 	}
-	public int getId() {
+	public void setId(long id) {
+		this.id = id;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public long getId() {
 		return id;
 	}
 	public int getRating() {
@@ -38,9 +50,6 @@ public class Review {
 	}
 	public void leaveComment(String comment) {
 		this.comment = comment;
-	}
-	private int generateId() {
-		return ++lastId;
 	}
 	public boolean validateRating() {
 		if(this.rating>=1 && this.rating<=5)

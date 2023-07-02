@@ -8,12 +8,13 @@
 	<form action="#" th:action="@{/register}" th:object="${user}"
 		method="post">
 		<fieldset>
-			<input type="submit" id="submitButton" th:value="Submit"> 
-			<input type="reset" id="resetButton" name="reset" th:value="Clear" />
-			<input placeholder="Enter name" required type="text" th:field="*{name}"/>
-			<input placeholder="Enter email" required type="text" th:field="*{email}"/>
-			<input placeholder="Enter password" required type="text" th:field="*{password}"/>
-			<input name="confirm_password" placeholder="Enter password again" required type="text"/>
+			<input type="submit" id="submitButton" th:value="Submit"> <input
+				type="reset" id="resetButton" name="reset" th:value="Clear" /> <input
+				placeholder="Enter name" required type="text" th:field="*{name}" />
+			<input placeholder="Enter email" required type="text"
+				th:field="*{email}" /> <input placeholder="Enter password" required
+				type="text" th:field="*{password}" /> <input name="confirm_password"
+				placeholder="Enter password again" required type="text" />
 		</fieldset>
 	</form>
 </body>
