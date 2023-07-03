@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.*;
 
 //@Table(name = "product_table")
@@ -46,13 +48,12 @@ public class Product {
 		this.description = "Placeholder";
 	}
 
-	public Product(String name, double price, int stock, String categoryName) {
+	public Product(String name, double price, int stock, Category category) {
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
 		this.description = "Placeholder";
-		this.category.setName(categoryName);
-		category.addProduct(this);
+		this.category=category;
 	}
 
 	public Product(String name, String description, double price, int stock) {
@@ -60,6 +61,7 @@ public class Product {
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
+		this.category=new Category("General");
 	}
 
 	public String getName() {
@@ -137,5 +139,17 @@ public class Product {
 	public void removeReview(Review review) {
 		review.setEvaluatedProduct(null);
 		reviews.remove(review);
+	}
+	public double getAverageRating() {
+	    List<Review> reviews = getReviews();
+	    int totalRating = 0;
+	    for (Review review : reviews) {
+	        totalRating += review.getRating();
+	    }
+	    if (reviews.size() > 0) {
+	        return (double) totalRating / reviews.size();
+	    } else {
+	        return 0.0;
+	    }
 	}
 }

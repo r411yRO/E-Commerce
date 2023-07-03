@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
@@ -19,19 +20,6 @@ public class ProductController {
 	CategoryRepository categoryRepository;
 	@Autowired
 	ReviewRepository reviewRepository;
-
-	@GetMapping("/addProduct")
-	public String addProduct(Model model) {
-		model.addAttribute("product", new Product());
-		return "addProduct";
-	}
-
-	@PostMapping("/addProduct")
-	public String register(@ModelAttribute Product product, Model model) {
-		productRepository.save(product);
-		model.addAttribute("products", productRepository.findAll());
-		return "addProduct";
-	}
 
 	@GetMapping("/addCategory")
 	public String addCategory(Model model) {
@@ -46,57 +34,55 @@ public class ProductController {
 		return "addCategory";
 	}
 
+	@GetMapping("/addProduct")
+	public String addProduct(Model model) {
+		model.addAttribute("product", new Product());
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "addProduct";
+	}
+
+	@PostMapping("/addProduct")
+	public String addProduct(@ModelAttribute Product product, @RequestParam("category") long categoryId, Model model) {
+		Category category = categoryRepository.getReferenceById(categoryId);
+		product.setCategory(category);
+		productRepository.save(product);
+		model.addAttribute("products", productRepository.findAll());
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "addProduct";
+	}
+
 	@GetMapping("/addReview")
 	public String addReview(Model model) {
 		model.addAttribute("review", new Review());
+		model.addAttribute("products", productRepository.findAll());
 		return "addReview";
 	}
 
 	@PostMapping("/addReview")
-	public String addReview(@ModelAttribute Review review, Model model) {
+	public String addReview(@ModelAttribute Review review, @RequestParam("evaluatedProduct") long evaluatedProduct,
+			Model model) {
+		Product product = productRepository.getReferenceById(evaluatedProduct);
+		product.addReview(review);
+		review.setEvaluatedProduct(product);
 		reviewRepository.save(review);
+		model.addAttribute("products", productRepository.findAll());
 		model.addAttribute("reviews", reviewRepository.findAll());
 		return "addReview";
 	}
 
 	@GetMapping("/products")
 	public String productList(Model model) {
-		/*
-		 * List<Product> products = createProductList(); model.addAttribute("products",
-		 * products); return "products";
-		 */
-		List<Category> categories = createCategoryList();
-		model.addAttribute("categories", categories);
-		return "productList";
+		model.addAttribute("products", productRepository.findAll());
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "products";
 	}
 
 	@GetMapping("/products/{id}")
 	public String productDetails(@PathVariable long id, Model model) {
-		Optional<Product> product = productRepository.findById(id);
+		Product product = productRepository.getReferenceById(id);
 		model.addAttribute("product", product);
+		List<Review> reviews = reviewRepository.findAllByEvaluatedProduct(product);
+		model.addAttribute("reviews", reviews);
 		return "productDetails";
-	}
-	/*
-	 * private List<Product> createProductList() { // Creați o listă de produse aici
-	 * și returnați-o List<Product> products = new ArrayList<>(); products.add(new
-	 * Product("Product 1", 10.99, 5)); products.add(new Product("Product 2", 19.99,
-	 * 3)); products.add(new Product("Product 3", 7.50, 10)); return products; }
-	 */
-
-	private List<Category> createCategoryList() {
-		List<Category> categories = new ArrayList<>();
-
-		Category category1 = new Category("Category 1");
-		category1.addProduct(new Product("Product 1", 10.99, 5, "Category1"));
-		category1.addProduct(new Product("Product 2", 19.99, 3, "Category1"));
-
-		Category category2 = new Category("Category 2");
-		category2.addProduct(new Product("Product 3", 7.50, 10, "Category2"));
-		category2.addProduct(new Product("Product 4", 15.49, 8, "Category2"));
-
-		categories.add(category1);
-		categories.add(category2);
-
-		return categories;
 	}
 }

@@ -5,12 +5,24 @@
 <title th:text="'Welcome, ' +${user.name}+'!'"></title>
 </head>
 <body>
-	<h1 th:text="'Bine ai venit, ' +${user.name}+' la magazinul nostru online'"></h1>
-	<h1>Alege produsele</h1>
-	<ul>
-	<li>Product 1</li>
-	<li>Product 2</li>
-	<li>Product 3</li>
-	</ul>
+	<h1
+		th:text="'Bine ai venit, ' +${user.name}+' la magazinul nostru online'"></h1>
+	<h1>Cele mai populare produse</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Average Rating</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.category.name}"></td>
+				<td th:text="${product.averageRating}"></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

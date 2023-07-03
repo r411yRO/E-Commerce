@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Product List</title>
+<title>Product Form</title>
 </head>
 <body>
-	<h1>Product List</h1>
-
 	<table>
 		<thead>
 			<tr>
@@ -18,19 +15,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="category : ${categories}">
-				<td th:text="${category.name}"></td>
-				<td colspan="4"></td>
-			</tr>
-			<tr th:each="product : ${category.products}">
-				<td></td>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.category.name}"></td>
 				<td><a th:href="@{/products/{id}(id=${product.id})}"
-					th:text="${product.name}"></a></td>
-				<!-- Restul coloanelor -->
-			</tr>
-			<tr th:each="product : ${category.products}">
-				<td></td>
-				<td th:text="${product.name}"></td>
+					th:text="${product.name}"> </a></td>
 				<td th:text="${product.description}"></td>
 				<td th:text="${product.price}"></td>
 				<td th:text="${product.stock}"></td>
@@ -38,4 +26,3 @@
 		</tbody>
 	</table>
 </body>
-</html>

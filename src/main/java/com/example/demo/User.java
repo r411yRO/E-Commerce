@@ -99,7 +99,7 @@ public class User {
 	// Checks if the email respects the following regex: name@provider.domain
 	// The email and the provider can't start with a number
 	public boolean isValidEmail(String email_input) {
-		Pattern pattern = Pattern.compile("^[^0-9].+@.+\\\\.[^0-9].+$");
+		Pattern pattern = Pattern.compile("^[^0-9].+@.+\\.[^0-9].+$");
 		Matcher matcher = pattern.matcher(email_input);
 		if (matcher.find())
 			return true;

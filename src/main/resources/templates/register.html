@@ -17,4 +17,7 @@
 				placeholder="Enter password again" required type="text" />
 		</fieldset>
 	</form>
+	<div th:if="${errorMessage}" class="error-message">
+		<p th:text="${errorMessage}"></p>
+	</div>
 </body>
