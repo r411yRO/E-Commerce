@@ -131,6 +131,11 @@ public class Product {
 	public void addReview(Review review) {
 		reviews.add(review);
 	}
+	public Review addReview(int rating,String comment) {
+		Review review=new Review(this,rating,comment);
+		reviews.add(review);
+		return review;
+	}
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;

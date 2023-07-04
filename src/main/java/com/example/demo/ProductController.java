@@ -57,7 +57,6 @@ public class ProductController {
 		model.addAttribute("products", productRepository.findAll());
 		return "addReview";
 	}
-
 	@PostMapping("/addReview")
 	public String addReview(@ModelAttribute Review review, @RequestParam("evaluatedProduct") long evaluatedProduct,
 			Model model) {
@@ -69,7 +68,6 @@ public class ProductController {
 		model.addAttribute("reviews", reviewRepository.findAll());
 		return "addReview";
 	}
-
 	@GetMapping("/products")
 	public String productList(Model model) {
 		model.addAttribute("products", productRepository.findAll());
@@ -81,8 +79,30 @@ public class ProductController {
 	public String productDetails(@PathVariable long id, Model model) {
 		Product product = productRepository.getReferenceById(id);
 		model.addAttribute("product", product);
+		model.addAttribute("review", new Review());
 		List<Review> reviews = reviewRepository.findAllByEvaluatedProduct(product);
 		model.addAttribute("reviews", reviews);
 		return "productDetails";
+	}
+	@PostMapping("/products/{id}")
+	public String addReviewToProduct(@PathVariable("id") long id, @RequestParam("rating") int rating,@RequestParam("comment")String comment, Model model) {
+	    Product product = productRepository.getReferenceById(id);
+	    Review review=new Review(product,rating,comment);
+	    product.addReview(review);
+	    review.setEvaluatedProduct(product);
+	    reviewRepository.save(review);
+	    List<Review> reviews = reviewRepository.findAllByEvaluatedProduct(product);
+	    model.addAttribute("review", review);
+	    model.addAttribute("product", product);
+	    model.addAttribute("reviews", reviews);
+	    return "productDetails";
+	}
+	@GetMapping("/category/{id}")
+	public String categoryDetails(@PathVariable long id, Model model) {
+	    Category category = categoryRepository.getReferenceById(id);
+	    List<Product> products = category.getProducts();
+	    model.addAttribute("category", category);
+	    model.addAttribute("productsOfCategory", products);
+	    return "categoryDetails";
 	}
 }

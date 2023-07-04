@@ -15,7 +15,14 @@
 	<p>
 		Stock: <span th:text="${product.stock}"></span>
 	</p>
-
+	  
+	<form action="#" th:action="@{/products/__${product.id}__}" th:object="${review}" method="post">
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" th:field="*{rating}" required min="1" max="5"><br>
+    <label for="comment">Comment:</label>
+    <textarea id="comment" th:field="*{comment}" rows="4" cols="50"></textarea>
+    <button type="submit">Save</button>
+</form>
 	<h3>Reviews</h3>
 	<table>
 		<thead>
