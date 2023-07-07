@@ -1,5 +1,6 @@
 package com.example.demo;
 import java.util.*;
+
 import jakarta.persistence.*;
 @Entity
 public class Review {
@@ -10,17 +11,26 @@ public class Review {
 	@ManyToOne
     @JoinColumn(name = "product_id")
 	private Product evaluatedProduct;
+	private String title;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	private String comment;
 	public Review() {}
 	public Review(Product product,int rating) {
 		this.rating=rating;
 		this.evaluatedProduct=product;
 	}
-	public Review(Product product,int rating,String comment) {
+	public Review(Product product,int rating,String title,String comment) {
 		this.rating=rating;
 		this.evaluatedProduct=product;
 		this.comment=comment;
+		this.title=title;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

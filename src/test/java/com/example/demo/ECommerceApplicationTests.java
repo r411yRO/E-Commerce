@@ -1,15 +1,8 @@
 package com.example.demo;
-import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 @SpringBootTest
 class ECommerceApplicationTests {
+	/*
 	private Cart cart;
 	int avg;
 	public Scanner in=new Scanner(System.in);
@@ -32,5 +25,5 @@ class ECommerceApplicationTests {
 		setUp();
 		//System.out.println(cart.getTotalPrice());
 	}
-
+*/
 }

@@ -1,6 +1,7 @@
 
 package com.example.demo;
 import java.util.*;
+
 public class Payment {
 	private static List<String> acceptedMethods=Arrays.asList("VISA","PayPal","MasterCard","Maestro");
 	private String paymentMethod;
@@ -61,7 +62,7 @@ public class Payment {
 		String receipt=new String();
 		receipt="The transaction of method type "+
 				getPaymentMethod()+"of the following products:"
-				+cart.listProducts()+"produts that ammounted to "
+				+cart.listCartProducts()+"produts that ammounted to "
 				+cart.getTotalPrice()+","
 				+" ended with status:"+getOrderStatus();
 		return receipt;

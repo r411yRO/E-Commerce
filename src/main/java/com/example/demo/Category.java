@@ -8,17 +8,18 @@ import jakarta.persistence.*;
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	String name;
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<Product> products;
+	/*
 	@ManyToOne
 	@JoinColumn(name = "parent_category_id")
 	private Category parentCategory;
 
 	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
 	private List<Category> subcategories;
-
+*/
 	public Category() {
 	}
 
@@ -43,11 +44,11 @@ public class Category {
 		this.name = name;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,7 +60,7 @@ public class Category {
 	public void addProduct(Product product) {
 		products.add(product);
 	}
-
+	/*
 	public void addSubcategory(Category subcategory) {
 		if (subcategory.getParentCategory() != null) {
 			subcategory.getParentCategory().getSubcategories().remove(subcategory);
@@ -87,5 +88,5 @@ public class Category {
 
 	public void setSubcategories(List<Category> subcategories) {
 		this.subcategories = subcategories;
-	}
+	}*/
 }

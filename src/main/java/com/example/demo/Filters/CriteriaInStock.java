@@ -1,6 +1,8 @@
 package com.example.demo.Filters;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.demo.Product;
-import java.util.*;
 
 public class CriteriaInStock implements Criteria {
 	@Override

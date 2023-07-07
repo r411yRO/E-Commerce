@@ -24,7 +24,7 @@ public class User {
 	private Gender gender;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private double balance;
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
@@ -80,7 +80,7 @@ public class User {
 		this.email = email;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
