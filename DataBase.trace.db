@@ -1,0 +1,27 @@
+2023-07-08 11:36:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CART" not found (this database is empty); SQL statement:
+select c1_0.id,c1_0.quantity,c1_0.total_price from cart c1_0 [42104-214]
+2023-07-08 11:37:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found (this database is empty); SQL statement:
+select p1_0.id,p1_0.category_id,p1_0.description,p1_0.image,p1_0.name,p1_0.price,p1_0.stock from product p1_0 [42104-214]
+2023-07-08 11:38:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found; SQL statement:
+CREATE TABLE cart_products (
+    cart_id INT,
+    product_id INT,
+    quantity INT,
+    PRIMARY KEY (cart_id, product_id),
+    FOREIGN KEY (cart_id) REFERENCES cart(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+) [42102-214]
+2023-07-08 11:40:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2023-07-08 11:41:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2023-07-08 11:41:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2023-07-08 11:41:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CART_PRODUCTS" not found; SQL statement:
+select c1_0.cart_id,c1_1.id,c2_0.id,c2_0.name,c1_1.description,c1_1.image,c1_1.name,c1_1.price,c1_1.stock,c1_0.quantity from cart_products c1_0 join product c1_1 on c1_1.id=c1_0.product_id left join category c2_0 on c2_0.id=c1_1.category_id where c1_0.cart_id=? [42102-214]
+2023-07-08 11:42:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
