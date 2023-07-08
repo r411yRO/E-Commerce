@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Product Form</title>
+	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
+	<title>Product Form</title>
 </head>
+
 <body>
 	<table>
 		<thead>
@@ -17,12 +20,27 @@
 		<tbody>
 			<tr th:each="product : ${products}">
 				<td th:text="${product.category.name}"></td>
-				<td><a th:href="@{/products/{id}(id=${product.id})}"
-					th:text="${product.name}"> </a></td>
+				<td><a th:href="@{/products/{id}(id=${product.id})}" th:text="${product.name}"> </a></td>
 				<td th:text="${product.description}"></td>
 				<td th:text="${product.price}"></td>
 				<td th:text="${product.stock}"></td>
 			</tr>
 		</tbody>
 	</table>
+	<form action="/filter" method="get">
+		<ul class="filter_list">
+			<label>Filter by stock:</label>
+			<li><input type="radio" name="stockFilter" value="all" checked> All</li>
+			<li><input type="radio" name="stockFilter" value="inStock"> In Stock</li>
+			<li><input type="radio" name="stockFilter" value="outOfStock"> Out Of Stock</li>
+		</ul>
+		<ul class="filter_list">
+			<label>Filter by price:</label>
+			<li><input type="radio" name="priceFilter" value="all" checked> All</li>
+			<li><input type="radio" name="priceFilter" value="<500"> Less than 500</li>
+			<li><input type="radio" name="priceFilter" value="<2000"> Less than 2000</li>
+			<li><input type="radio" name="priceFilter" value=">2000"> Over 2000</li>
+		</ul>
+		<button type="submit">Apply Filters</button>
+	</form>
 </body>

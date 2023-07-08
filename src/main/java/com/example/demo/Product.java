@@ -2,11 +2,6 @@ package com.example.demo;
 
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.example.demo.Category;
-import com.example.demo.Review;
-
 import jakarta.persistence.*;
 
 //@Table(name = "product_table")

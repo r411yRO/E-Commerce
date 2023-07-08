@@ -78,3 +78,9 @@ ul.images li {
 .hide{
 	display:none;
 }
+.filter_list{
+	list-style-type: none;
+	float:left;
+	padding:0;
+	background-color: dimgrey;
+}
