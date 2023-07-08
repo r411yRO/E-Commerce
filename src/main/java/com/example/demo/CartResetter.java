@@ -5,7 +5,10 @@ import jakarta.annotation.PostConstruct;
 
 @Component
 public class CartResetter {
+<<<<<<< HEAD
 	/*
+=======
+>>>>>>> 3d279c548b61ac11bbce81d241f5c18306be921b
 	private final CartRepository cartRepository;
 
     CartResetter(CartRepository cartRepository) {
@@ -15,5 +18,9 @@ public class CartResetter {
     @PostConstruct
     public void resetTable() {
         cartRepository.deleteAll();
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> 3d279c548b61ac11bbce81d241f5c18306be921b
 }
