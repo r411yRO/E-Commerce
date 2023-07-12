@@ -30,7 +30,7 @@
 		<input type="submit" value="Adauga in cos" />
 	</form>
 
-	<img class="center" th:src="@{'/Images/' + ${product.image}}+'.jpg'"
+	<img class="center" th:src="@{'/Images/Products/' + ${product.image}}+'.jpg'"
 		alt="productImage">
 	<h3 style="line-height: 0.2px">Lasa o recenzie!</h3>
 	<form action="#" th:action="@{/products/__${product.id}__}"

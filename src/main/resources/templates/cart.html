@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Cart</title>
+	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
+	<title>Cart</title>
 </head>
+
 <body>
+	<h1>Cosul de cumparaturi</h1>
+	<ul class="toolbar">
+		<li th:each="category : ${categories}">
+			<form th:action="@{/category/{id}(id=${category.id})}" method="get">
+				<button type="submit" th:text="${category.name}"></button>
+			</form>
+		</li>
+	</ul>
+	<img id="logo" src="/Images/Logo.jpg" alt="PageLogo">
 	<table>
-		<thead>
+		<thead th:if="${!cartProducts.isEmpty()}">
 			<tr>
-				<th>Category</th>
 				<th>Name</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>Stock</th>
+				<th>Quantity</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="product:${cartProducts.keySet()}">
+			<tr th:if="${!cartProducts.isEmpty()}" th:each="product:${cartProducts.keySet()}">
 				<td th:text="${product.name}"></td>
-				<!--  
-				<td><a th:href="@{/products/{id}(id=${product.id})}"
-					th:text="${product.name}"> </a></td>
-				<td th:text="${product.description}"></td>
-				<td th:text="${product.price}"></td>
-				<td th:text="${product.stock}"></td>-->
 			</tr>
+			<tr th:unless="${!cartProducts.isEmpty()}"><h1>Cosul este gol!</h1></tr>
 		</tbody>
 	</table>
 </body>

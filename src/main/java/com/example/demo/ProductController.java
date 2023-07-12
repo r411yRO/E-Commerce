@@ -133,14 +133,25 @@ public class ProductController {
 		Category category = categoryRepository.getReferenceById(id);
 		List<Product> products = category.getProducts();
 		model.addAttribute("category", category);
-		model.addAttribute("productsOfCategory", products);
+		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("products", products);
 		return "categoryDetails";
 	}
 
 	@GetMapping("/filter")
 	public String filterProducts(@RequestParam(value = "stockFilter", required = false) String stockFilter,
-			@RequestParam(value = "priceFilter", required = false) String priceFilter, Model model) {
-		List<Product> products = productRepository.findAll();
+			@RequestParam(value = "priceFilter", required = false) String priceFilter,
+			@RequestParam(name = "categoryId", required = false) Long categoryId, Model model) {
+		String redirect;
+		List<Product> products;
+		if (categoryId != null) {
+			products = categoryRepository.getReferenceById(categoryId).getProducts();
+			model.addAttribute("category", categoryRepository.getReferenceById(categoryId));
+			redirect = "categoryDetails";
+		} else {
+			products = productRepository.findAll();
+			redirect = "products";
+		}
 		List<Criteria> criteriaList = new ArrayList<>();
 		if (stockFilter != null) {
 			if (stockFilter.equals("inStock")) {
@@ -158,11 +169,23 @@ public class ProductController {
 				criteriaList.add(new CriteriaPriceAbove(2000));
 			}
 		}
-
 		List<Product> filteredProducts = applyFilters(products, criteriaList);
-
 		model.addAttribute("products", filteredProducts);
+		model.addAttribute("categories", categoryRepository.findAll());
+		return redirect;
+	}
 
+	@GetMapping("/search")
+	public String searchProduct(@RequestParam(name = "keyword", required = false) String word, Model model) {
+		List<Product> products = new ArrayList<>();
+		Product product = productRepository.findByName(word);
+		System.out.println(word);
+		if (word != null && product != null)
+			products.add(product);
+		else
+			products = productRepository.findAll();
+		model.addAttribute("products", products);
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "products";
 	}
 

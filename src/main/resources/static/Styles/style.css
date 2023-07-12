@@ -34,8 +34,6 @@
 	border: no;
 	border-radius: 4px;
 	padding: 5px;
-	border-radius: 4px;
-	padding: 5px;
 	width: 160px;
 }
 
@@ -70,17 +68,35 @@ ul.images li {
 }
 
 .center {
-	position: absolute;
+	position: sticky;
 	width: 20%;
-	top:130px;
-	left:700px;
+	left: 700px;
 }
-.hide{
-	display:none;
+
+.hide {
+	display: none;
 }
-.filter_list{
+
+.filter_list {
+	position: absolute;
+	top: 300px;
+}
+
+.filter_list form ul {
 	list-style-type: none;
-	float:left;
-	padding:0;
-	background-color: dimgrey;
+	padding: 0;
+}
+
+.products {
+	display: inline-block;
+	padding-left: 10%;
+	position: sticky;
+}
+
+.products ul {
+	list-style-type: none;
+}
+
+.products p {
+	text-align: center;
 }

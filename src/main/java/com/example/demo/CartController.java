@@ -13,12 +13,15 @@ public class CartController {
 	ProductRepository productRepository;
 	@Autowired
 	CartRepository cartRepository;
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	@GetMapping("/cart")
 	public String getCart(Model model) {
 		if (!cartRepository.existsById((long) 1))
 			cartRepository.save(new Cart());
 		Cart cart = cartRepository.getReferenceById((long) 1);
+		model.addAttribute("categories",categoryRepository.findAll());
 		model.addAttribute("cartProducts", cart.getCartProducts());
 		return "cart";
 	}

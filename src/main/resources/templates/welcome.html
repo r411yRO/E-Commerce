@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<link th:href="@{/Styles/style.css}" rel="stylesheet" />
-<title th:text="'Welcome, ' +${user.name}+'!'"></title>
+	<meta charset="UTF-8">
+	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
+	<title th:text="'Welcome, ' +${user.name}+'!'"></title>
 </head>
+
 <body>
-	<h1
-		th:text="'Bine ai venit, ' +${user.name}+' la magazinul nostru online'"></h1>
+	<h1 th:text="'Bine ai venit, ' +${user.name}+' la magazinul nostru online'"></h1>
 	<ul class="toolbar">
 		<li th:each="category : ${categories}">
 			<form th:action="@{/category/{id}(id=${category.id})}" method="get">
@@ -16,30 +17,29 @@
 		</li>
 	</ul>
 	<img id="logo" src="/Images/Logo.jpg" alt="PageLogo">
-	<table>
-		<tbody>
-		<tr>
-		<td colspan="4"></td>
-		</tr>
-			<tr  th:each="category : ${categories}">
-				<td th:text="${category.name}"></td>
-				<td  th:each="product:${category.products}"
-					th:text=${product.name}><img id="productImage"
-					th:src="@{'/Images/' + ${product.image}}+'.jpg'"></img></td>
-			</tr>
-		</tbody>
-	</table>
-	<ul class="images" th:each="category : ${categories}">
-		<li th:each="product : ${category.products}"
-			th:text="${category.name}">> <img id="productImage"
-			th:src="@{'/Images/' + ${product.image}}+'.jpg'"></img>
-		</li>
-	</ul>
-	<div th:each="product : ${products}">
-		<h2 th:text="${product.name}"></h2>
-		<img th:src="@{'/Images/' + ${product.image}}+'.jpg'"></img>
+
+	<div class="center">
+		<p>Sti deja ce cauti? Cauta aici!</p>
+		<form action="/search" method="get">
+			<input type="text" name="keyword">
+			<button type="submit" th:text="Cauta"></button>
+		</form>
 	</div>
-		<h1>Cele mai populare produse</h1>
+	<div th:each="category : ${categories}">
+		<div class="products" th:each="product : ${category.products}">
+			<ul>
+				<br>
+				<p th:text="${product.name}"></p>
+				<li><a th:href="@{/products/{id}(id=${product.id})}"> <img id="productImage"
+							th:src="@{'/Images/Thumbnails/' + ${product.image}}+'.jpg'"></img><a /></li>
+			</ul>
+		</div>
+		<div th:unless=>
+			
+		</div>
+	</div>
+
+	<h1>Cele mai populare produse</h1>
 	<table>
 		<thead>
 			<tr>
@@ -51,11 +51,11 @@
 		<tbody>
 			<tr th:each="product : ${products}">
 				<td th:text="${product.name}"></td>
-
 				<td th:text="${product.category.name}"></td>
 				<td th:text="${product.averageRating}"></td>
 			</tr>
 		</tbody>
 	</table>
 </body>
+
 </html>
