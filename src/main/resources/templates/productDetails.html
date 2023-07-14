@@ -1,62 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<link th:href="@{/Styles/style.css}" rel="stylesheet" />
-<title>Product Details</title>
-</head>
-<body>
-	<h1 th:text="'Detaliile produsului, ' +${product.name}+':'"></h1>
-	<ul class="toolbar">
-		<li th:each="category : ${categories}">
-			<form th:action="@{/category/{id}(id=${category.id})}" method="get">
-				<button type="submit" th:text="${category.name}"></button>
-			</form>
-		</li>
-	</ul>
-	<img id="logo" src="/Images/Logo.jpg" alt="PageLogo">
-	<h2 th:text="'Name:'+${product.name}"></h2>
-	<p th:text="'Description:'+${product.description}"></p>
-	<p>
-		Price: <span th:text="${product.price}"></span>
-	</p>
-	<p>
-		Stock: <span th:text="${product.stock}"></span>
-	</p>
-	<span>Iti place produsul:</span>
-	<form action="/addToCart" method="post">
-		<label for="rating">Cantitate:</label> <input type="number" th:name="numberOf">
-		<input type="hidden" th:name="productId" th:value="${product.id}">
-		<input type="submit" value="Adauga in cos" />
-	</form>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">>
 
-	<img class="center" th:src="@{'/Images/Products/' + ${product.image}}+'.jpg'"
-		alt="productImage">
-	<h3 style="line-height: 0.2px">Lasa o recenzie!</h3>
-	<form action="#" th:action="@{/products/__${product.id}__}"
-		th:object="${review}" method="post">
-		<label for="rating">Rating:</label> <input type="number" id="rating"
-			th:field="*{rating}" required min="1" max="5"><br> <label
-			for="title">Title:</label>
-		<textarea id="title" th:field="*{title}" rows="1" cols="10"></textarea>
-		<br> <label for="comment">Comment:</label>
-		<textarea id="comment" th:field="*{comment}" rows="4" cols="50"></textarea>
-		<button type="submit">Save</button>
-	</form>
-	<form action="/cart" method="get">
-		<input type="submit" value="Vedeti cosul" />
-	</form>
-	<h3 th:text="'Reviews for product:'+${product.name}"></h3>
-	<div class="productReviews">
-		<ul class="reviewItem">
-			<li th:each="review : ${product.reviews}">
-				<div>
-					<p class="title" th:text="${review.title}"></p>
-					<p class="rating" th:text="${review.rating}"></p>
-					<p class="comment" th:text="${review.comment}"></p>
-				</div> <br>
-			</li>
-		</ul>
-	</div>
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/Styles/style.css}" rel="stylesheet"/>
+	<title>Product Details</title>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<p th:text="'Description:'+${product.description}"></p>
+		<p>
+			Price: <span th:text="${product.price}"></span>
+		</p>
+		<p>
+			Stock: <span th:text="${product.stock}"></span>
+		</p>
+		<span>Iti place produsul:</span>
+		<form action="/addToCart" method="post">
+			<label for="rating">Cantitate:</label> <input type="number" th:name="numberOf">
+			<input type="hidden" th:name="productId" th:value="${product.id}">
+			<input type="submit" value="Adauga in cos" />
+		</form>
+
+		<img class="center" th:src="@{'/Images/Products/' + ${product.image}}+'.jpg'" alt="productImage">
+		<h3 style="line-height: 0.2px">Lasa o recenzie!</h3><br>
+		<form action="#" th:action="@{/products/__${product.id}__}" th:object="${review}" method="post">
+			<label for="rating">Rating:</label> <input type="number" id="rating" th:field="*{rating}" required min="1"
+				max="5"><br> <label for="title">Title:</label>
+			<textarea id="title" th:field="*{title}" rows="1" cols="10"></textarea>
+			<br> <label for="comment">Comment:</label>
+			<textarea id="comment" th:field="*{comment}" rows="4" cols="50"></textarea>
+			<button type="submit">Save</button>
+		</form>
+		<form action="/cart" method="get">
+			<input type="submit" value="Vedeti cosul" />
+		</form>
+		<h3 th:text="'Reviews for product:'+${product.name}"></h3>
+		<div class="productReviews">
+			<ul class="reviewItem">
+				<li th:each="review : ${product.reviews}">
+					<div>
+						<p class="title" th:text="${review.title}"></p>
+						<p class="rating" th:text="${review.rating}"></p>
+						<p class="comment" th:text="${review.comment}"></p>
+					</div> <br>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section layout:fragment="filters"></section>
+	<section layout:fragment="search"></section>
 </body>
+
 </html>

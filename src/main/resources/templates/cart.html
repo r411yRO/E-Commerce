@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">>
 
 <head>
 	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
@@ -7,16 +8,8 @@
 </head>
 
 <body>
-	<h1>Cosul de cumparaturi</h1>
-	<ul class="toolbar">
-		<li th:each="category : ${categories}">
-			<form th:action="@{/category/{id}(id=${category.id})}" method="get">
-				<button type="submit" th:text="${category.name}"></button>
-			</form>
-		</li>
-	</ul>
-	<img id="logo" src="/Images/Logo.jpg" alt="PageLogo">
-	<table>
+	<section layout:fragment="content">
+			<table>
 		<thead th:if="${!cartProducts.isEmpty()}">
 			<tr>
 				<th>Name</th>
@@ -30,4 +23,5 @@
 			<tr th:unless="${!cartProducts.isEmpty()}"><h1>Cosul este gol!</h1></tr>
 		</tbody>
 	</table>
+	</section>
 </body>

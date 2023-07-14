@@ -23,6 +23,7 @@ public class CartController {
 		Cart cart = cartRepository.getReferenceById((long) 1);
 		model.addAttribute("categories",categoryRepository.findAll());
 		model.addAttribute("cartProducts", cart.getCartProducts());
+		model.addAttribute("title","Cart");
 		return "cart";
 	}
 

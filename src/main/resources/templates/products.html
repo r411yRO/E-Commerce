@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 
 <head>
 	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
@@ -7,52 +8,19 @@
 </head>
 
 <body>
-	<h1>List of Products</h1>
-	<ul class="toolbar">
-		<li th:each="category : ${categories}">
-			<form th:action="@{/category/{id}(id=${category.id})}" method="get">
-				<button type="submit" th:text="${category.name}"></button>
-			</form>
-		</li>
-	</ul>
-	<img id="logo" src="/Images/Logo.jpg" alt="PageLogo">
-	<div class="center">
-		<p>Sti deja ce cauti? Cauta aici!</p>
-		<form action="/search" method="get">
-			<input type="text" name="keyword">
-			<button type="submit" th:text="Cauta"></button>
-		</form>
-		<br>
-	</div>
-	<div>
-		<div class="products" th:if="${!products.isEmpty()}" th:each="product : ${products}">
-			<ul>
-				<br>
-				<p th:text="${product.name}"></p>
-				<li><a th:href="@{/products/{id}(id=${product.id})}"> <img id="productImage"
-							th:src="@{'/Images/Thumbnails/' + ${product.image}}+'.jpg'"></img><a /></li>
-			</ul>
+	<section layout:fragment="content">
+		<div>
+			<div class="products" th:if="${!products.isEmpty()}" th:each="product : ${products}">
+				<ul>
+					<br>
+					<p th:text="${product.name}"></p>
+					<li><a th:href="@{/products/{id}(id=${product.id})}"> <img id="productImage"
+								th:src="@{'/Images/Thumbnails/' + ${product.image}}+'.jpg'"></img><a /></li>
+				</ul>
+			</div>
+			<div class="center" style="top:250px" th:unless="${!products.isEmpty()}">
+				<h1>Nu s-a gasit niciun element!</h1>
+			</div>
 		</div>
-		<div class="center" style="top:250px" th:unless="${!products.isEmpty()}">
-			<h1  >Nu s-a gasit niciun element!</h1>
-		</div>
-	</div>
-	<div class="filter_list">
-		<form action="/filter" method="get">
-			<ul>
-				<label>Filter by stock:</label>
-				<li><input type="radio" name="stockFilter" value="all" checked> All</li>
-				<li><input type="radio" name="stockFilter" value="inStock"> In Stock</li>
-				<li><input type="radio" name="stockFilter" value="outOfStock"> Out Of Stock</li>
-			</ul>
-			<ul>
-				<label>Filter by price:</label>
-				<li><input type="radio" name="priceFilter" value="all" checked> All</li>
-				<li><input type="radio" name="priceFilter" value="<500"> Less than 500</li>
-				<li><input type="radio" name="priceFilter" value="<2000"> Less than 2000</li>
-				<li><input type="radio" name="priceFilter" value=">2000"> Over 2000</li>
-			</ul>
-			<button type="submit">Apply Filters</button>
-		</form>
-	</div>
+	</section>
 </body>

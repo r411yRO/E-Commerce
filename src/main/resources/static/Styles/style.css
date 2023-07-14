@@ -1,18 +1,19 @@
 .toolbar {
+	position:sticky;
+	left:450px;
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	background-color: #f1f1f1;
+	background-color: #6c757d;
 	overflow: hidden;
 }
-
 .toolbar li {
 	float: left;
 }
 
 .toolbar li form {
+	color: #6c757d;
 	display: block;
-	color: #333;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
@@ -21,10 +22,15 @@
 .toolbar li form button {
 	border: 0;
 	border-style: none;
+	background-color: #6c757d;
 }
 
 .toolbar li form:hover {
-	background-color: #ddd;
+	background-color: palevioletred;
+}
+
+.toolbar li form button:hover {
+	background-color: palevioletred;
 }
 
 #logo {
@@ -35,6 +41,8 @@
 	border-radius: 4px;
 	padding: 5px;
 	width: 160px;
+	padding: 0;
+	margin: 0;
 }
 
 .product-list {

@@ -99,6 +99,7 @@ public class ProductController {
 	public String productList(Model model) {
 		model.addAttribute("products", productRepository.findAll());
 		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("title","Browse all products!");
 		return "products";
 	}
 
@@ -110,6 +111,7 @@ public class ProductController {
 		List<Review> reviews = reviewRepository.findAllByEvaluatedProduct(product);
 		model.addAttribute("categories", categoryRepository.findAll());
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("title","Details for product:"+product.getName());
 		return "productDetails";
 	}
 
@@ -135,6 +137,7 @@ public class ProductController {
 		model.addAttribute("category", category);
 		model.addAttribute("categories", categoryRepository.findAll());
 		model.addAttribute("products", products);
+		model.addAttribute("title","Products of category:"+category.getName());
 		return "categoryDetails";
 	}
 
@@ -144,12 +147,15 @@ public class ProductController {
 			@RequestParam(name = "categoryId", required = false) Long categoryId, Model model) {
 		String redirect;
 		List<Product> products;
+		Category category=categoryRepository.getReferenceById(categoryId);
 		if (categoryId != null) {
-			products = categoryRepository.getReferenceById(categoryId).getProducts();
+			products = category.getProducts();
 			model.addAttribute("category", categoryRepository.getReferenceById(categoryId));
 			redirect = "categoryDetails";
+			model.addAttribute("title","Products of category:"+category.getName());
 		} else {
 			products = productRepository.findAll();
+			model.addAttribute("title","Browse all products!");
 			redirect = "products";
 		}
 		List<Criteria> criteriaList = new ArrayList<>();
@@ -186,6 +192,7 @@ public class ProductController {
 			products = productRepository.findAll();
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categoryRepository.findAll());
+		model.addAttribute("title","Browse all products!");
 		return "products";
 	}
 
