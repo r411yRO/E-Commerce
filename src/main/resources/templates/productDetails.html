@@ -10,8 +10,8 @@
 
 <body>
 	<section layout:fragment="content">
-		<p>
-			<span th:utext="${product.description.replace('\r\n', '<br>')}"></span>
+		<p>Product description: <br>
+			<span th:utext="${product.description.replace('\n', '<br>')}"></span>
 		</p>
 		<p>
 			Price: <span th:text="${product.price}"></span>

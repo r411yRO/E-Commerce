@@ -48,8 +48,8 @@
 				<ul>
 					<label>Filter by price:</label>
 					<li><input type="radio" name="priceFilter" value="all" checked> All</li>
-					<li><input type="radio" name="priceFilter" value="<"> Less than <input type="number" name="lessThan"></li>
-					<li><input type="radio" name="priceFilter" value=">"> Over <input type="number" name="above"></li>
+					<li><input type="radio" name="priceFilter" value="<"> Less than <input type="number" name="lessThan" style="width:80px"></li>
+					<li><input type="radio" name="priceFilter" value=">"> Over <input type="number" style="width:80px" name="above"></li>
 				</ul>
 				<input th:if="${category}" type="hidden" name="categoryId" th:value="${category.id}">
 				<button type="submit">Apply Filters</button>
