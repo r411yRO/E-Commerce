@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">>
 
 <head>
 	<meta charset="UTF-8">
 	<title>About</title>
 </head>
 
-<body>
+<section layout:fragment="content" class="text-center">
 	<h1>This website was made by me :R411y))!</h1>
 	<h3>Real name:Draghici Daniel</h3>
-</body>
+	<img src="/Images/smile.gif" alt="smile"></img>
+</section>
+<section layout:fragment="search"></section>
+<section layout:fragment="filters"></section>
 
 </html>
