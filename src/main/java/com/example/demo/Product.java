@@ -25,7 +25,7 @@ public class Product {
 	}
 
 	public void setImage() {
-		this.image = this.name.toLowerCase().replaceAll(" ", "");
+		this.image = this.name;
 	}
 
 	@ManyToOne
@@ -131,6 +131,9 @@ public class Product {
 
 	public void removeFromStock(int quantity) {
 		this.stock -= quantity;
+	}
+	public void removeFromStock() {
+		this.stock-=1;
 	}
 
 	public boolean isInStock() {

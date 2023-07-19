@@ -144,11 +144,17 @@ public class ProductController {
 	@GetMapping("/filter")
 	public String filterProducts(@RequestParam(value = "stockFilter", required = false) String stockFilter,
 			@RequestParam(value = "priceFilter", required = false) String priceFilter,
+			@RequestParam(name="lessThan",required=false) Integer less,
+			@RequestParam(name="above",required=false) Integer above,
 			@RequestParam(name = "categoryId", required = false) Long categoryId, Model model) {
 		String redirect;
+		System.out.println(priceFilter);
+		System.out.println(less);
+		System.out.println(above);
+		System.out.println(categoryId);
 		List<Product> products;
-		Category category=categoryRepository.getReferenceById(categoryId);
 		if (categoryId != null) {
+			Category category=categoryRepository.getReferenceById(categoryId);
 			products = category.getProducts();
 			model.addAttribute("category", categoryRepository.getReferenceById(categoryId));
 			redirect = "categoryDetails";
@@ -167,12 +173,11 @@ public class ProductController {
 			}
 		}
 		if (priceFilter != null) {
-			if (priceFilter.equals("<500")) {
-				criteriaList.add(new CriteriaPriceBelow(500));
-			} else if (priceFilter.equals("<2000")) {
-				criteriaList.add(new CriteriaPriceBelow(2000));
-			} else if (priceFilter.equals(">2000")) {
-				criteriaList.add(new CriteriaPriceAbove(2000));
+			if (priceFilter.equals("<")) {
+				criteriaList.add(new CriteriaPriceBelow(less));
+			} 
+			else if (priceFilter.equals(">")) {
+				criteriaList.add(new CriteriaPriceAbove(above));
 			}
 		}
 		List<Product> filteredProducts = applyFilters(products, criteriaList);

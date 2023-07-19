@@ -18,27 +18,7 @@
 							th:src="@{'/Images/Thumbnails/' + ${product.image}}+'.jpg'"></img><a /></li>
 			</ul>
 		</div>
-		<div class="filter_list">
-			<form action="/filter" method="get">
-				<input type="hidden" th:name="categoryId" th:value="${category.id}">
-				<ul>
-					<label>Filter by stock:</label>
-					<li><input type="radio" name="stockFilter" value="all" checked> All</li>
-					<li><input type="radio" name="stockFilter" value="inStock"> In Stock</li>
-					<li><input type="radio" name="stockFilter" value="outOfStock"> Out Of Stock</li>
-				</ul>
-				<ul>
-					<label>Filter by price:</label>
-					<li><input type="radio" name="priceFilter" value="all" checked> All</li>
-					<li><input type="radio" name="priceFilter" value="<500"> Less than 500</li>
-					<li><input type="radio" name="priceFilter" value="<2000"> Less than 2000</li>
-					<li><input type="radio" name="priceFilter" value=">2000"> Over 2000</li>
-				</ul>
-				<button type="submit">Apply Filters</button>
-			</form>
-		</div>
 	</section>
-
 </body>
 
 </html>

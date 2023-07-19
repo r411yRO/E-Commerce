@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">>>
+
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
+	<meta charset="UTF-8">
+	<title>Login</title>
 </head>
-<body>
-	<form action="#" th:action="@{/login}" th:object="${user}"
-		method="post">
+<section layout:fragment="content">
+	<form action="#" th:action="@{/login}" th:object="${user}" method="post">
 		<fieldset>
-			<input type="submit" id="submitButton" th:value="Save"> 
-			<input placeholder="Enter email" required type="text" th:field="*{email}" /> 
+			<input type="submit" id="submitButton" th:value="Save">
+			<input placeholder="Enter email" required type="text" th:field="*{email}" />
 			<input placeholder="Enter password" required type="password" th:field="*{password}" />
 		</fieldset>
 	</form>
-	
+
 	<div th:if="${errorMessage}" class="error-message">
 		<p th:text="${errorMessage}"></p>
 	</div>
-	
-</body>
+</section>
+<section layout:fragment="search"></section>
+<section layout:fragment="filters"></section>

@@ -20,7 +20,8 @@ public class UserController {
 	CategoryRepository categoryRepository;
 
 	@GetMapping("/")
-	public String getHomePage() {
+	public String getHomePage(Model model) {
+		model.addAttribute("categories",categoryRepository.findAll());
 		return "index";
 	}
 

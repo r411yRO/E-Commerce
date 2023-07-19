@@ -4,13 +4,15 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link th:href="@{/Styles/style.css}" rel="stylesheet"/>
+	<link th:href="@{/Styles/style.css}" rel="stylesheet" />
 	<title>Product Details</title>
 </head>
 
 <body>
 	<section layout:fragment="content">
-		<p th:text="'Description:'+${product.description}"></p>
+		<p>
+			<span th:utext="${product.description.replace('\r\n', '<br>')}"></span>
+		</p>
 		<p>
 			Price: <span th:text="${product.price}"></span>
 		</p>
@@ -31,20 +33,22 @@
 				max="5"><br> <label for="title">Title:</label>
 			<textarea id="title" th:field="*{title}" rows="1" cols="10"></textarea>
 			<br> <label for="comment">Comment:</label>
-			<textarea id="comment" th:field="*{comment}" rows="4" cols="50"></textarea>
+			<textarea id="comment" th:field="*{comment}"></textarea>
 			<button type="submit">Save</button>
 		</form>
 		<form action="/cart" method="get">
 			<input type="submit" value="Vedeti cosul" />
 		</form>
 		<h3 th:text="'Reviews for product:'+${product.name}"></h3>
-		<div class="productReviews">
+		<div style="resize:vertical" class="productReviews">
 			<ul class="reviewItem">
 				<li th:each="review : ${product.reviews}">
 					<div>
 						<p class="title" th:text="${review.title}"></p>
 						<p class="rating" th:text="${review.rating}"></p>
-						<p class="comment" th:text="${review.comment}"></p>
+						<p>
+							<span th:utext="${review.comment.replace('\n', '<br>')}"></span>
+						</p>
 					</div> <br>
 				</li>
 			</ul>

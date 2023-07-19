@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">>>
+
 <head>
-<meta charset="UTF-8">
-<title>Magazin Online</title>
+	<meta charset="UTF-8">
+	<title>Magazin Online</title>
 </head>
-<body>
+<section layout:fragment="content">
 	<h1>Bun venit în magazinul nostru online!</h1>
 
 	<p>Avem o selecție largă de produse la prețuri competitive.</p>
@@ -25,5 +27,7 @@
 	<p>Vă mulțumim că ați ales magazinul nostru online!</p>
 	<a href="/about">About</a>
 
-</body>
+</section>
+<section layout:fragment="search"></section>
+<section layout:fragment="filters"></section>
 </html>

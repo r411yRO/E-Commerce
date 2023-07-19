@@ -11,7 +11,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary sticky-top">
-		<h1 style="font-family:'Merienda';font-size: 22px" th:text="${title}"></h1>
+		<h1 style="font-family:'Merienda';font-size: 20px" th:text="${title}"></h1>
 		<imgadiv class="collapse navbar-collapse">
 			<ul class="toolbar">
 				<li th:each="category : ${categories}">
@@ -48,10 +48,10 @@
 				<ul>
 					<label>Filter by price:</label>
 					<li><input type="radio" name="priceFilter" value="all" checked> All</li>
-					<li><input type="radio" name="priceFilter" value="<500"> Less than 500</li>
-					<li><input type="radio" name="priceFilter" value="<2000"> Less than 2000</li>
-					<li><input type="radio" name="priceFilter" value=">2000"> Over 2000</li>
+					<li><input type="radio" name="priceFilter" value="<"> Less than <input type="number" name="lessThan"></li>
+					<li><input type="radio" name="priceFilter" value=">"> Over <input type="number" name="above"></li>
 				</ul>
+				<input th:if="${category}" type="hidden" name="categoryId" th:value="${category.id}">
 				<button type="submit">Apply Filters</button>
 			</form>
 		</div>
