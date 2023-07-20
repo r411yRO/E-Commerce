@@ -11186,3 +11186,15 @@ INSERT INTO "PUBLIC"."PRODUCT_COPY_3_0"("ID", "NAME", "DESCRIPTION", "PRICE", "S
 2023-07-19 16:38:37 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "COMMENT CHARACTER VARYING(255)": "U&'Pro:\\000d\\000aVentila\\021bie foarte bun\\0103 pentru un sistem decent\\000d\\000... (1142)"; SQL statement:
 INSERT INTO "PUBLIC"."REVIEW_COPY_3_1"("ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID") OVERRIDING SYSTEM VALUE SELECT "ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID" FROM "PUBLIC"."REVIEW" [22001-214]
+2023-07-19 16:57:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Socket :1700 \\\\n\\000d\\000a\\000d\\000aSerie \\00a0\\00a0\\00a0Core i5 13th gen \\\\n... (284)"; SQL statement:
+INSERT INTO "PUBLIC"."PRODUCT_COPY_3_0"("ID", "NAME", "DESCRIPTION", "PRICE", "STOCK", "IMAGE", "CATEGORY_ID") OVERRIDING SYSTEM VALUE SELECT "ID", "NAME", "DESCRIPTION", "PRICE", "STOCK", "IMAGE", "CATEGORY_ID" FROM "PUBLIC"."PRODUCT" [22001-214]
+2023-07-19 16:57:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "COMMENT CHARACTER VARYING(255)": "U&'Pro:\\000d\\000aVentila\\021bie foarte bun\\0103 pentru un sistem decent\\000d\\000... (1142)"; SQL statement:
+INSERT INTO "PUBLIC"."REVIEW_COPY_3_1"("ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID") OVERRIDING SYSTEM VALUE SELECT "ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID" FROM "PUBLIC"."REVIEW" [22001-214]
+2023-07-20 16:02:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Socket :1700 \\\\n\\000d\\000a\\000d\\000aSerie \\00a0\\00a0\\00a0Core i5 13th gen \\\\n... (284)"; SQL statement:
+INSERT INTO "PUBLIC"."PRODUCT_COPY_3_0"("ID", "NAME", "DESCRIPTION", "PRICE", "STOCK", "IMAGE", "CATEGORY_ID") OVERRIDING SYSTEM VALUE SELECT "ID", "NAME", "DESCRIPTION", "PRICE", "STOCK", "IMAGE", "CATEGORY_ID" FROM "PUBLIC"."PRODUCT" [22001-214]
+2023-07-20 16:02:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "COMMENT CHARACTER VARYING(255)": "U&'Pro:\\000d\\000aVentila\\021bie foarte bun\\0103 pentru un sistem decent\\000d\\000... (1142)"; SQL statement:
+INSERT INTO "PUBLIC"."REVIEW_COPY_3_1"("ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID") OVERRIDING SYSTEM VALUE SELECT "ID", "RATING", "TITLE", "COMMENT", "PRODUCT_ID" FROM "PUBLIC"."REVIEW" [22001-214]
